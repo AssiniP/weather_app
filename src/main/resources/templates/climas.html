@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Climas</title>
+</head>
+<body>
+<h1>Lista de Climas</h1>
+<h2>última actualizacion</h2>
+<p th:text="${lastUpdate}"></p>
+    <table>
+        <tr>
+        	<th>Nombre</th>
+            <th>Provincia</th>
+            <th>Temperatura</th>
+            <th>Descripcion</th>
+            <th>Visibilidad</th>
+            <th>Humedad</th>
+            <th>Presion omg</th>
+            <th>Viento</th>
+        </tr>
+        <tr th:each="clima : ${climas}">
+            <td th:text="${clima.name}"></td>
+            <td th:text="${clima.province}"></td>
+            <td th:text="${clima.weather.tempDesc}"></td>
+            <td th:text="${clima.weather.description}"></td>
+            <td th:text="${clima.weather.visibility}"></td>
+            <td th:text="${clima.weather.humidity}"></td>
+            <td th:text="${clima.weather.pressure}"></td>
+            <td th:text="${clima.weather.wind_speed}"></td>
+        </tr>
+    </table>
+</body>
+</html>
