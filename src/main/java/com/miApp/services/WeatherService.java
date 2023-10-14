@@ -26,7 +26,13 @@ public class WeatherService {
     	Flux<LocationData> locationDataFlux = weatherApiService.getLocationData();
         System.out.println("toy actualizando");
         locationDataFlux
-            .doOnNext(locationDataRepository::save)
+	        .doOnNext(newLocationData -> {
+	            LocationData existingLocationData = locationDataRepository.findLocationDataByNameAndProvince(newLocationData.getName(), newLocationData.getProvince());
+	            if (existingLocationData != null) {
+	                locationDataRepository.delete(existingLocationData);
+	            }
+	            locationDataRepository.save(newLocationData);
+	        })
             .doOnComplete(() -> lastUpdateDateTime = LocalDateTime.now())
             .subscribe();
     }
