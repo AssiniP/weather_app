@@ -13,7 +13,7 @@
 </div>
 <div class="flex justify-center">
 	<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-3 p-4">
-		<div class="grid grid-rows-6 bg-blue-200 p-2 hover:bg-blue-300 transition ease-in-out rounded-lg text-center shadow-md" th:each="clima : ${climas}">
+		<div class="grid grid-rows-6 bg-blue-200 p-2 hover:bg-blue-300 transition ease-in-out rounded-lg text-center shadow-md m-2 p-2" th:each="clima : ${climas}">
 			<p th:text="${clima.name + ', ' + clima.province}" class="text-lg font-semibold"></p>
 		    <p th:text="${clima.weather.tempDesc}" class="text-lg"></p>
 		    <p th:text="${clima.weather.description}"></p>
