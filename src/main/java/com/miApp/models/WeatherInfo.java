@@ -16,7 +16,7 @@ public class WeatherInfo {
     private Double wind_speed;
 
     @OneToOne(mappedBy = "weather")
-    private WeatherData weatherData;
+    private LocationData weatherData;
     
     public WeatherInfo() {}
 

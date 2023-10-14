@@ -3,7 +3,7 @@ package com.miApp.models;
 import jakarta.persistence.*;
 
 @Entity
-public class WeatherData {
+public class LocationData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -12,11 +12,10 @@ public class WeatherData {
     private String province;
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "weather_info_id")
+    @JoinColumn(name = "weatherInfo_id")
     private WeatherInfo weather;
     
-    
-    public WeatherData() {}
+    public LocationData() {}
 
 
 	public Long getId() {

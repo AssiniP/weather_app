@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 
-import com.miApp.models.WeatherData;
-import com.miApp.models.WeatherDataRepository;
+import com.miApp.models.LocationData;
+import com.miApp.models.ILocationDataRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,16 +17,16 @@ public class WeatherUpdateService {
     @Autowired
     private WeatherService weatherService;
     @Autowired
-    private WeatherDataRepository weatherDataRepository;
+    private ILocationDataRepository locationDataRepository;
     
     private LocalDateTime lastUpdateDateTime;
     
     @Scheduled(fixedRate = 300000) // 5 minutos
-    public void updateWeatherData() {  
-    	Flux<WeatherData> weatherDataFlux = weatherService.getWeatherData();
+    public void updateLocationData() {  
+    	Flux<LocationData> locationDataFlux = weatherService.getLocationData();
         System.out.println("toy actualizando");
-        weatherDataFlux
-            .doOnNext(weatherDataRepository::save)
+        locationDataFlux
+            .doOnNext(locationDataRepository::save)
             .doOnComplete(() -> lastUpdateDateTime = LocalDateTime.now())
             .subscribe();
     }
