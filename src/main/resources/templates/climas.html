@@ -3,32 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Climas</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1>Lista de Climas</h1>
-<h2>última actualizacion</h2>
-<p th:text="${lastUpdate}"></p>
-    <table>
-        <tr>
-        	<th>Nombre</th>
-            <th>Provincia</th>
-            <th>Temperatura</th>
-            <th>Descripcion</th>
-            <th>Visibilidad</th>
-            <th>Humedad</th>
-            <th>Presion omg</th>
-            <th>Viento</th>
-        </tr>
-        <tr th:each="clima : ${climas}">
-            <td th:text="${clima.name}"></td>
-            <td th:text="${clima.province}"></td>
-            <td th:text="${clima.weather.tempDesc}"></td>
-            <td th:text="${clima.weather.description}"></td>
-            <td th:text="${clima.weather.visibility}"></td>
-            <td th:text="${clima.weather.humidity}"></td>
-            <td th:text="${clima.weather.pressure}"></td>
-            <td th:text="${clima.weather.wind_speed}"></td>
-        </tr>
-    </table>
+<body class="relative bg-slate-100">
+<div class="sticky top-0 z-50 bg-blue-300 md-2 p-2 text-center shadow-md">
+  <h1 class="text-4xl font-bold">Lista de Climas</h1>
+  <h2 class="text-xl">Última actualizacion</h2>
+  <p th:text="${lastUpdate}"></p>
+</div>
+<div class="flex justify-center">
+	<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-3 p-4">
+		<div class="grid grid-rows-6 bg-blue-200 p-2 rounded-lg text-center shadow-md" th:each="clima : ${climas}">
+			<p th:text="${clima.name + ', ' + clima.province}" class="text-lg font-semibold"></p>
+		    <p th:text="${clima.weather.tempDesc}" class="text-lg"></p>
+		    <p th:text="${clima.weather.description}"></p>
+		    <p th:text="${'Visibilidad: ' + clima.weather.visibility + ' km'}"></p>
+		    <p th:text="${'Humedad: ' + clima.weather.humidity + '%'}"></p>
+		    <p th:text="${'Presión: ' + clima.weather.pressure}"></p>
+		    <p th:text="${'Viento: ' +clima.weather.wind_speed + ' km/h'}"></p>
+		</div>
+	</div>
+</div>
 </body>
 </html>

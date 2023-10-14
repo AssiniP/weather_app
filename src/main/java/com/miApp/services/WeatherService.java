@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 
@@ -39,6 +40,7 @@ public class WeatherService {
             .subscribe();
     }
     
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     public LocalDateTime getLastUpdateDateTime() {
         return lastUpdateDateTime;
     }
