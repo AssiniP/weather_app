@@ -5,6 +5,9 @@ import org.springframework.stereotype.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.miApp.models.*;
+import com.miApp.models.entities.LocationData;
+import com.miApp.models.entities.WeatherInfo;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import com.fasterxml.jackson.databind.JsonNode;

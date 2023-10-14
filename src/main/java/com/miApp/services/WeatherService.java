@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 
-import com.miApp.models.LocationData;
-import com.miApp.models.ILocationDataRepository;
+import com.miApp.models.entities.LocationData;
+import com.miApp.models.repositories.ILocationDataRepository;
 
 import reactor.core.publisher.Flux;
 

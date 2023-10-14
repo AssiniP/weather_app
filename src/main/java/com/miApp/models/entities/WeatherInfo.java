@@ -1,4 +1,4 @@
-package com.miApp.models;
+package com.miApp.models.entities;
 
 import jakarta.persistence.*;
 
