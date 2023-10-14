@@ -29,9 +29,11 @@ public class WeatherService {
 	        .doOnNext(newLocationData -> {
 	            LocationData existingLocationData = locationDataRepository.findLocationDataByNameAndProvince(newLocationData.getName(), newLocationData.getProvince());
 	            if (existingLocationData != null) {
-	                locationDataRepository.delete(existingLocationData);
+	            	System.out.println("toy updatenaddoo");
+	            	existingLocationData.getWeather().updateFrom(newLocationData.getWeather());
+	            } else {
+	            	locationDataRepository.save(newLocationData);
 	            }
-	            locationDataRepository.save(newLocationData);
 	        })
             .doOnComplete(() -> lastUpdateDateTime = LocalDateTime.now())
             .subscribe();

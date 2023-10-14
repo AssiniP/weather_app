@@ -19,6 +19,15 @@ public class WeatherInfo {
     private LocationData weatherData;
     
     public WeatherInfo() {}
+    
+    public void updateFrom(WeatherInfo other) {
+        this.tempDesc = other.tempDesc;
+        this.description = other.description;
+        this.visibility = other.visibility;
+        this.humidity = other.humidity;
+        this.pressure = other.pressure;
+        this.wind_speed = other.wind_speed;
+    }
 
 	public Long getId() {
 		return id;

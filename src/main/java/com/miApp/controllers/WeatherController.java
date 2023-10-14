@@ -18,7 +18,7 @@ public class WeatherController {
     @Autowired
     private WeatherService weatherService;
 
-    @GetMapping("/climas")
+    @GetMapping(value = {"/"})
     public String mostrarClimas(Model model) {
         model.addAttribute("climas", weatherService.getAllLocationData());
         model.addAttribute("lastUpdate", weatherService.getLastUpdateDateTime());
