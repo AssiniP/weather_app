@@ -10,24 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.miApp.models.LocationData;
 import com.miApp.models.ILocationDataRepository;
-import com.miApp.services.WeatherUpdateService;
+import com.miApp.services.WeatherService;
 
 
 @Controller
 public class WeatherController {
     @Autowired
-    private ILocationDataRepository weatherDataRepository;
-    
-    @Autowired
-    private WeatherUpdateService weatherUpdateService;
+    private WeatherService weatherService;
 
     @GetMapping("/climas")
     public String mostrarClimas(Model model) {
-        List<LocationData> weatherDataList = weatherDataRepository.findAll();
-        model.addAttribute("climas", weatherDataList);
-        
-        LocalDateTime lastUpdate = weatherUpdateService.getLastUpdateDateTime();
-        model.addAttribute("lastUpdate", lastUpdate);
+        model.addAttribute("climas", weatherService.getAllLocationData());
+        model.addAttribute("lastUpdate", weatherService.getLastUpdateDateTime());
         
         return "climas";
     }
