@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 
@@ -25,12 +24,10 @@ public class WeatherService {
     @Scheduled(fixedRate = 300000) // 5 minutos
     public void updateLocationData() {  
     	Flux<LocationData> locationDataFlux = weatherApiService.getLocationData();
-        System.out.println("toy actualizando");
         locationDataFlux
 	        .doOnNext(newLocationData -> {
 	            LocationData existingLocationData = locationDataRepository.findLocationDataByNameAndProvince(newLocationData.getName(), newLocationData.getProvince());
 	            if (existingLocationData != null) {
-	            	System.out.println("toy updatenaddoo");
 	            	existingLocationData.getWeather().updateFrom(newLocationData.getWeather());
 	            } else {
 	            	locationDataRepository.save(newLocationData);
@@ -40,7 +37,6 @@ public class WeatherService {
             .subscribe();
     }
     
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     public LocalDateTime getLastUpdateDateTime() {
         return lastUpdateDateTime;
     }

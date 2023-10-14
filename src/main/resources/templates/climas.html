@@ -7,13 +7,13 @@
 </head>
 <body class="relative bg-slate-100">
 <div class="sticky top-0 z-50 bg-blue-300 md-2 p-2 text-center shadow-md">
-  <h1 class="text-4xl font-bold">Lista de Climas</h1>
+  <h1 class="text-4xl font-bold m-2">Lista de Climas</h1>
   <h2 class="text-xl">Última actualizacion</h2>
-  <p th:text="${lastUpdate}"></p>
+  <p th:text="${#temporals.format(lastUpdate, 'dd-MM-yyyy HH:mm:ss')}"></p>
 </div>
 <div class="flex justify-center">
 	<div class="grid md:grid-cols-3 lg:grid-cols-4 gap-3 p-4">
-		<div class="grid grid-rows-6 bg-blue-200 p-2 rounded-lg text-center shadow-md" th:each="clima : ${climas}">
+		<div class="grid grid-rows-6 bg-blue-200 p-2 hover:bg-blue-300 transition ease-in-out rounded-lg text-center shadow-md" th:each="clima : ${climas}">
 			<p th:text="${clima.name + ', ' + clima.province}" class="text-lg font-semibold"></p>
 		    <p th:text="${clima.weather.tempDesc}" class="text-lg"></p>
 		    <p th:text="${clima.weather.description}"></p>

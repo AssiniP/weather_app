@@ -15,7 +15,6 @@ public class WeatherApiService {
     private final String weatherApiUrl = "https://ws.smn.gob.ar/map_items/weather";
 
     public WeatherApiService(WebClient.Builder webClientBuilder) {
-    	System.out.println("soy el weather api service y me crearon");
         this.webClient = webClientBuilder.baseUrl(weatherApiUrl).build();
     }
 
